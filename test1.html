@@ -17,9 +17,12 @@
     <script type="application/javascript">
         Telegram.WebApp.onEvent('ready', function() {
             tgIsLoaded = true;
-            document.body.style.visibility = '';
-            Telegram.WebApp.ready();
         });
+        
+        $(document).ready(function() {
+            document.body.style.visibility = 'visible';
+            Telegram.WebApp.ready();
+        });        
         
         const DemoApp = {
             initData      : Telegram.WebApp.initData || '',
