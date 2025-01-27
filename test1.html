@@ -22,20 +22,18 @@
         $(document).ready(function() {
             $( "#tabs" ).tabs();
             document.body.style.visibility = 'visible';
-            /*
+            Telegram.WebApp.ready();
             Telegram.WebApp.MainButton.setParams({
                 text: 'Close App',
                 has_shine_effect: true,
                 is_visible: true
             }).onClick(Telegram.WebApp.close());
-            */
             /*
             Telegram.WebApp.SecondaryButton.setParams({
                 text: 'View Bot Info',
                 is_visible: true
             }).onClick(DemoApp.moveSecondaryButton);
             */
-            Telegram.WebApp.ready();
         });        
         
         const DemoApp = {
