@@ -14,37 +14,25 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>    
     <script type="application/javascript">
-        const tgIsLoaded = false;
-        Telegram.WebApp.onEvent('ready', function() {
-            tgIsLoaded = true;
-        });
-        
         $(document).ready(function() {
             $( "#tabs" ).tabs();
             document.body.style.visibility = 'visible';
             Telegram.WebApp.ready();
-            Telegram.WebApp.MainButton.setParams({
-                text: 'Close App',
-                has_shine_effect: true,
-                is_visible: true
-            }).onClick(Telegram.WebApp.close());
-            /*
-            Telegram.WebApp.SecondaryButton.setParams({
-                text: 'View Bot Info',
-                is_visible: true
-            }).onClick(DemoApp.moveSecondaryButton);
-            */
+            const initData = Telegram.WebApp.initData;
+            Telegram.WebApp.MainButton.setText("Submit");
+            Telegram.WebApp.MainButton.show();
+            Telegram.WebApp.MainButton.onClick(function() {
+                alert("Main button clicked!");
+            });
+
+            Telegram.WebApp.BackButton.show();
+            Telegram.WebApp.BackButton.onClick(function() {
+                alert("Back button clicked!");
+            });
         });        
-        
-        const DemoApp = {
-            initData      : Telegram.WebApp.initData || '',
-            initDataUnsafe: Telegram.WebApp.initDataUnsafe || {},
-        }
     </script>    
 </head>
 <body class="" style="visibility: hidden;">
-    <h2 style="text-align: center;">Telegram Web App DEMO</h2>
-    <hr/>
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1">Nunc tincidunt</a></li>
