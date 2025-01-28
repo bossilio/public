@@ -19,10 +19,10 @@
             font-size: 12px;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
-        #tabs { flex: 1; }
         #tabs-container {
-            height: 100%;
+            height: 100vh;
             display: flex;
             flex-direction: column;
         }
@@ -30,6 +30,9 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+        }
+        .ui-tabs-nav {
+            flex-shrink: 0;
         }
         .ui-tabs-panel {
             flex: 1;
