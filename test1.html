@@ -1,30 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Telegram Web App</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />    
+    <meta name="MobileOptimized" content="176" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Demo Web App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>    
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 20px;
+            height: 100%;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
         }
+        #tabs-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #tabs {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .ui-tabs-nav {
+            flex-shrink: 0;
+        }
+        .ui-tabs-panel {
+            flex: 1;
+            overflow: auto;
+        }    
     </style>
 </head>
-<body>
-    <h1>Hello from Telegram Web App!</h1>
-    <p id="username">Loading...</p>
+<body class="" style="visibility: hidden;">
+    <div id="tabs-container">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Info</a></li>
+                <li><a href="#tabs-2">About web app</a></li>
+            </ul>
+            <div id="tabs-1">
+                <h3 style="text-align: center;">User:</h3>
+                <div id="UserUnknownDv">
+                    User unknown (no data) ...
+                </div>
+                <div id="UserInfoDv" style="display: none;">
+                    <ul>
+                        <li>ID: <span id="UserIdSp"></span></li>
+                        <li>First name: <span id="FirstNameSp"></span></li>
+                        <li>Last name: <span id="LastNameSp"></span></li>
+                        <li>Username: <span id="UsernameSp"></span></li>
+                        <li>Language code: <span id="LanguageCodeSp"></span></li>
+                    </ul>
+                    <hr/>
+                    <ul>
+                        <li>Query ID: <span id="QueryIdSp"></span></li>
+                        <li>Auth Date: <span id="AuthDateSp"></span></li>
+                        <li>Hash: <span id="HashSp"></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="tabs-2">
+                <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+            </div>
+        </div>    
+    </div>
+    <script type="application/javascript">
+        //--
+        document.addEventListener('DOMContentLoaded', function () {
+            $( "#tabs" ).tabs();
+            document.body.style.visibility = 'visible';
+            
+            Telegram.WebApp.MainButton.setText("Main button");
+            Telegram.WebApp.MainButton.show();
+            Telegram.WebApp.MainButton.onClick(function() {
+                alert("Main button clicked!");
+            });
 
-    <script>
-        // Telegram Web App API
-        const tg = window.Telegram.WebApp;
+            Telegram.WebApp.SecondaryButton.setText("Secondary button");
+            Telegram.WebApp.SecondaryButton.show();
+            Telegram.WebApp.SecondaryButton.onClick(function() {
+                alert("Secondary Button clicked!");
+            });
+            
+            Telegram.WebApp.BackButton.show();
+            Telegram.WebApp.BackButton.onClick(function() {
+                alert("Back button clicked!");
+            });
 
-        // Отобразить имя пользователя
-        const username = tg.initDataUnsafe.user?.username || "Гость";
-        document.getElementById('username').innerText = `Welcome, ${username}!`;
+            Telegram.WebApp.ready();
 
-        // Уведомление, что Web App готово
-        tg.ready();
-    </script>
+            console.log('Document loaded.');
+           
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
+            console.log(Telegram.WebApp);
+            const initData = window.Telegram.WebApp.initData;
+            console.log(initData);
+            if (user) {
+                $('#UserIdSp').text(user.id);
+                $('#FirstNameSp').text(user.first_name);
+                $('#LastNameSp').text(user.last_name);
+                $('#UsernameSp').text(user.user_name);
+                $('#LanguageCodeSp').text(user.language_code);
+            }
+            if (initData) {
+                const params = new URLSearchParams(initData);
+                const queryId = params.get('query_id'); // "AAEBAQ"
+                const user = params.get('user'); // "%7B%22id%22%3A123456789%2C%22first_name%22%3A%22John%22%7D"
+                const authDate = params.get('auth_date'); // "1693142400"
+                const hash = params.get('hash'); // "abcdef123456"
+                const date = new Date(authDate * 1000);
+                const readableDate = date.toLocaleString('en-GB', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                });
+                $('#QueryIdSp').text(queryId);
+                $('#AuthDateSp').text(readableDate);
+                $('#HashSp').text(hash);
+                $('#UserUnknownDv').hide();
+                $('#UserInfoDv').show();
+            }
+        });
+    
+    </script>    
 </body>
 </html>
