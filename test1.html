@@ -43,7 +43,6 @@
         document.addEventListener('DOMContentLoaded', function () {
             $( "#tabs" ).tabs();
             document.body.style.visibility = 'visible';
-            Telegram.WebApp.ready();
             
             Telegram.WebApp.MainButton.setText("Main button");
             Telegram.WebApp.MainButton.show();
@@ -62,6 +61,8 @@
                 alert("Back button clicked!");
             });
 
+            Telegram.WebApp.ready();
+            
             Telegram.WebApp.onEvent('ready', function () {
                 const user = Telegram.WebApp.initDataUnsafe.user;
                 console.log(Telegram.WebApp);
