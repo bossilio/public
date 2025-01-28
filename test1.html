@@ -63,7 +63,7 @@
             });
 
             const user = Telegram.WebApp.initDataUnsafe.user;
-            console.log(user);
+            console.log(Telegram.WebApp.initDataUnsafe);
             if (user) {
                 $('#UserIdSp').text(user.id);
                 $('#FirstNameSp').text(user.first_name);
