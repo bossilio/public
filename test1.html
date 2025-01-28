@@ -100,10 +100,6 @@
 
             console.log('Document loaded.');
            
-        });        
-
-        window.Telegram.WebApp.onEvent('ready', function () {
-            console.log('Telegram object loaded.');
             const user = window.Telegram.WebApp.initDataUnsafe.user;
             console.log(Telegram.WebApp);
             const initData = window.Telegram.WebApp.initData;
