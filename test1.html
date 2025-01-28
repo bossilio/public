@@ -145,7 +145,10 @@
             if (data == '') {
                 alert('Error! Nothing to send.');
             }
-            window.Telegram.WebApp.sendData(data);
+            window.Telegram.WebApp.sendData(JSON.stringify({
+                action: 'send_message',
+                message: data
+            }));
         }
     </script>    
 </body>
