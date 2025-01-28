@@ -54,18 +54,24 @@
                 </div>
                 <div id="UserInfoDv" style="display: none;">
                     <ul>
-                        <li>ID: <span id="UserIdSp"></span></li>
-                        <li>First name: <span id="FirstNameSp"></span></li>
-                        <li>Last name: <span id="LastNameSp"></span></li>
-                        <li>Username: <span id="UsernameSp"></span></li>
-                        <li>Language code: <span id="LanguageCodeSp"></span></li>
+                        <li><b>ID:</b> <span id="UserIdSp"></span></li>
+                        <li><b>First name:</b> <span id="FirstNameSp"></span></li>
+                        <li><b>Last name:</b> <span id="LastNameSp"></span></li>
+                        <li><b>Username:</b> <span id="UsernameSp"></span></li>
+                        <li><b>Language code:</b> <span id="LanguageCodeSp"></span></li>
                     </ul>
                     <hr/>
                     <ul>
-                        <li>Query ID: <span id="QueryIdSp"></span></li>
-                        <li>Auth Date: <span id="AuthDateSp"></span></li>
-                        <li>Hash: <span id="HashSp" style="word-wrap: break-word;"></span></li>
+                        <li><b>Query ID:</b> <span id="QueryIdSp"></span></li>
+                        <li><b>Auth Date:</b> <span id="AuthDateSp"></span></li>
+                        <li><b>Hash:</b> <span id="HashSp" style="word-wrap: break-word;"></span></li>
                     </ul>
+                    <hr/>
+                    User and session data can only be retrieved when the web app is called via an inline button.
+                    <hr/>
+                    <textarea id="MessageTa" rows=5 style="width: 100%;"></textarea>
+                    <button onclick="SendMessageToBot();">Send text to bot</button>
+                    <!-- Данные о пользователе и сеансе можно получить только когда web app вызвана через inline-кнопку. -->
                 </div>
             </div>
             <div id="tabs-2">
@@ -133,7 +139,14 @@
                 $('#UserInfoDv').show();
             }
         });
-    
+        //--
+        function SendMessageToBot() {
+            const data = $('#MessageTa').val().trim();
+            if (data == '') {
+                alert('Error! Nothing to send.');
+            }
+            window.Telegram.WebApp.sendData(data);
+        }
     </script>    
 </body>
 </html>
