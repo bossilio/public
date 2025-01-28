@@ -74,10 +74,6 @@
         </div>    
     </div>
     <script type="application/javascript">
-        const user = Telegram.WebApp.initDataUnsafe.user;
-        console.log(Telegram.WebApp);
-        const initData = Telegram.WebApp.initData;
-        console.log(initData);
         //--
         document.addEventListener('DOMContentLoaded', function () {
             $( "#tabs" ).tabs();
@@ -101,10 +97,17 @@
             });
 
             Telegram.WebApp.ready();
+
+            console.log('Document loaded.');
            
         });        
 
         Telegram.WebApp.onEvent('ready', function () {
+            console.log('Telegram object loaded.');
+            const user = Telegram.WebApp.initDataUnsafe.user;
+            console.log(Telegram.WebApp);
+            const initData = Telegram.WebApp.initData;
+            console.log(initData);
             if (user) {
                 $('#UserIdSp').text(user.id);
                 $('#FirstNameSp').text(user.first_name);
