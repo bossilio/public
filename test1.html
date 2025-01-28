@@ -61,6 +61,37 @@
             Telegram.WebApp.BackButton.onClick(function() {
                 alert("Back button clicked!");
             });
+
+            const user = Telegram.WebApp.initDataUnsafe.user;
+            if (user) {
+                $('#UserIdSp').text(user.id);
+                $('#FirstNameSp').text(user.first_name);
+                $('#LastNameSp').text(user.last_name);
+                $('#UsernameSp').text(user.user_name);
+                $('#LanguageCodeSp').text(user.language_code);
+            }
+            const initData = Telegram.WebApp.initData;
+            if (initData) {
+                const params = new URLSearchParams(initData);
+                const queryId = params.get('query_id'); // "AAEBAQ"
+                const user = params.get('user'); // "%7B%22id%22%3A123456789%2C%22first_name%22%3A%22John%22%7D"
+                const authDate = params.get('auth_date'); // "1693142400"
+                const hash = params.get('hash'); // "abcdef123456"
+                const date = new Date(authDate * 1000);
+                const readableDate = date.toLocaleString('en-GB', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                });
+                $('#QueryIdSp').text(queryId);
+                $('#AuthDateSp').text(readableDate);
+                $('#HashSp').text(hash);
+            }
+            $('#UserUnknownDv').hide();
+            $('UserInfoDv').show();
         });        
     </script>    
 </head>
@@ -68,11 +99,29 @@
     <div id="tabs-container">
         <div id="tabs">
             <ul>
-                <li><a href="#tabs-1">Info</a></li>
+                <li><a href="#tabs-1">nfo</a></li>
                 <li><a href="#tabs-2">About web app</a></li>
             </ul>
             <div id="tabs-1">
-                <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                <h3 style="text-align: center;">User:</h3>
+                <div id="UserUnknownDv">
+                    User unknown (no data) ...
+                </div>
+                <div id="UserInfoDv" style="display: none;">
+                    <ul>
+                        <li>ID: <span id="UserIdSp"></span></li>
+                        <li>First name: <span id="FirstNameSp"></span></li>
+                        <li>Last name: <span id="LastNameSp"></span></li>
+                        <li>Username: <span id="UsernameSp"></span></li>
+                        <li>Language code: <span id="LanguageCodeSp"></span></li>
+                    </ul>
+                    <hr/>
+                    <ul>
+                        <li>Query ID: <span id="QueryIdSp"></span></li>
+                        <li>Auth Date: <span id="AuthDateSp"></span></li>
+                        <li>Hash: <span id="HashSp"></span></li>
+                    </ul>
+                </div>
             </div>
             <div id="tabs-2">
                 <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
