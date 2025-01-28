@@ -101,38 +101,40 @@
             });
 
             Telegram.WebApp.ready();
-            
-            Telegram.WebApp.onEvent('ready', function () {
-                if (user) {
-                    $('#UserIdSp').text(user.id);
-                    $('#FirstNameSp').text(user.first_name);
-                    $('#LastNameSp').text(user.last_name);
-                    $('#UsernameSp').text(user.user_name);
-                    $('#LanguageCodeSp').text(user.language_code);
-                }
-                if (initData) {
-                    const params = new URLSearchParams(initData);
-                    const queryId = params.get('query_id'); // "AAEBAQ"
-                    const user = params.get('user'); // "%7B%22id%22%3A123456789%2C%22first_name%22%3A%22John%22%7D"
-                    const authDate = params.get('auth_date'); // "1693142400"
-                    const hash = params.get('hash'); // "abcdef123456"
-                    const date = new Date(authDate * 1000);
-                    const readableDate = date.toLocaleString('en-GB', {
-                        day: '2-digit',
-                        month: 'long',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit',
-                    });
-                    $('#QueryIdSp').text(queryId);
-                    $('#AuthDateSp').text(readableDate);
-                    $('#HashSp').text(hash);
-                    $('#UserUnknownDv').hide();
-                    $('#UserInfoDv').show();
-                }
-            });
+           
         });        
+
+        Telegram.WebApp.onEvent('ready', function () {
+            if (user) {
+                $('#UserIdSp').text(user.id);
+                $('#FirstNameSp').text(user.first_name);
+                $('#LastNameSp').text(user.last_name);
+                $('#UsernameSp').text(user.user_name);
+                $('#LanguageCodeSp').text(user.language_code);
+            }
+            if (initData) {
+                const params = new URLSearchParams(initData);
+                const queryId = params.get('query_id'); // "AAEBAQ"
+                const user = params.get('user'); // "%7B%22id%22%3A123456789%2C%22first_name%22%3A%22John%22%7D"
+                const authDate = params.get('auth_date'); // "1693142400"
+                const hash = params.get('hash'); // "abcdef123456"
+                const date = new Date(authDate * 1000);
+                const readableDate = date.toLocaleString('en-GB', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                });
+                $('#QueryIdSp').text(queryId);
+                $('#AuthDateSp').text(readableDate);
+                $('#HashSp').text(hash);
+                $('#UserUnknownDv').hide();
+                $('#UserInfoDv').show();
+            }
+        });
+    
     </script>    
 </body>
 </html>
