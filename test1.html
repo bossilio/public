@@ -63,6 +63,7 @@
             });
 
             const user = Telegram.WebApp.initDataUnsafe.user;
+            console.log(user);
             if (user) {
                 $('#UserIdSp').text(user.id);
                 $('#FirstNameSp').text(user.first_name);
@@ -71,6 +72,7 @@
                 $('#LanguageCodeSp').text(user.language_code);
             }
             const initData = Telegram.WebApp.initData;
+            console.log(initData);
             if (initData) {
                 const params = new URLSearchParams(initData);
                 const queryId = params.get('query_id'); // "AAEBAQ"
@@ -89,9 +91,9 @@
                 $('#QueryIdSp').text(queryId);
                 $('#AuthDateSp').text(readableDate);
                 $('#HashSp').text(hash);
+                $('#UserUnknownDv').hide();
+                $('#UserInfoDv').show();
             }
-            $('#UserUnknownDv').hide();
-            $('#UserInfoDv').show();
         });        
     </script>    
 </head>
