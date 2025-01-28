@@ -102,11 +102,11 @@
            
         });        
 
-        Telegram.WebApp.onEvent('ready', function () {
+        window.Telegram.WebApp.onEvent('ready', function () {
             console.log('Telegram object loaded.');
-            const user = Telegram.WebApp.initDataUnsafe.user;
+            const user = window.Telegram.WebApp.initDataUnsafe.user;
             console.log(Telegram.WebApp);
-            const initData = Telegram.WebApp.initData;
+            const initData = window.Telegram.WebApp.initData;
             console.log(initData);
             if (user) {
                 $('#UserIdSp').text(user.id);
