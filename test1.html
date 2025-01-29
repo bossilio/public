@@ -107,12 +107,8 @@
 
             Telegram.WebApp.ready();
 
-            console.log('Document loaded.');
-           
             const user = window.Telegram.WebApp.initDataUnsafe.user;
-            console.log(user);
             const initData = window.Telegram.WebApp.initData;
-            console.log(initData);
             if (user) {
                 $('#UserIdSp').text(user.id);
                 $('#FirstNameSp').text(user.first_name);
@@ -148,10 +144,33 @@
             if (data == '') {
                 alert('Error! Nothing to send.');
             }
+            /* -- useless
             window.Telegram.WebApp.sendData(JSON.stringify({
                 action: 'send_message',
                 message: data
             }));
+            */
+            var dataToSend = {
+                chat_id: chatId,
+                message: data
+            };
+            $.ajax({
+                    url: apiUrl,
+                    type: 'POST',
+                    data: dataToSend,
+                    success: function(response) {
+                        if (response.substring(0,5) == 'Error') {
+                            alert(response);
+                        }
+                        else {
+                            $('#MessageTa').val('');
+                            alert('Message sent to bot!');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Send error!');                        
+                    }
+                });
         }
     </script>    
 </body>
