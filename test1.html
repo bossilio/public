@@ -21,63 +21,47 @@
             padding: 0;
             overflow: hidden;
         }
-        #tabs-container {
-            height: calc(100% - 30px);
-            display: flex;
-            flex-direction: column;
-        }
         #tabs {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+            height: 100vh;
         }
-        .ui-tabs-nav {
-            flex-shrink: 0;
-        }
-        .ui-tabs-panel {
-            flex: 1;
-            overflow: auto;
-        }    
     </style>
 </head>
 <body class="" style="visibility: hidden;">
-    <div id="tabs-container">
-        <div id="tabs">
-            <ul>
-                <li><a href="#tabs-1">Info</a></li>
-                <li><a href="#tabs-2">About web app</a></li>
-            </ul>
-            <div id="tabs-1" style="overflow: auto!important;">
-                <h3 style="text-align: center;">User:</h3>
-                <div id="UserUnknownDv">
-                    User unknown (no data) ...
-                </div>
-                <div id="UserInfoDv" style="display: none;">
-                    <ul>
-                        <li><b>ID:</b> <span id="UserIdSp"></span></li>
-                        <li><b>First name:</b> <span id="FirstNameSp"></span></li>
-                        <li><b>Last name:</b> <span id="LastNameSp"></span></li>
-                        <li><b>Username:</b> <span id="UsernameSp"></span></li>
-                        <li><b>Language code:</b> <span id="LanguageCodeSp"></span></li>
-                    </ul>
-                    <hr/>
-                    <ul>
-                        <li><b>Query ID:</b> <span id="QueryIdSp"></span></li>
-                        <li><b>Auth Date:</b> <span id="AuthDateSp"></span></li>
-                        <li><b>Hash:</b> <span id="HashSp" style="word-wrap: break-word;"></span></li>
-                    </ul>
-                    <hr/>
-                    User and session data can only be retrieved when the web app is called via an inline button.
-                    <hr/>
-                    <textarea id="MessageTa" rows=5 style="width: 100%;"></textarea>
-                    <button onclick="SendMessageToBot();">Send text to bot</button>
-                    <!-- Данные о пользователе и сеансе можно получить только когда web app вызвана через inline-кнопку. -->
-                </div>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Info</a></li>
+            <li><a href="#tabs-2">About web app</a></li>
+        </ul>
+        <div id="tabs-1" style="overflow: auto!important;">
+            <h3 style="text-align: center;">User:</h3>
+            <div id="UserUnknownDv">
+                User unknown (no data) ...
             </div>
-            <div id="tabs-2">
-                <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+            <div id="UserInfoDv" style="display: none;">
+                <ul>
+                    <li><b>ID:</b> <span id="UserIdSp"></span></li>
+                    <li><b>First name:</b> <span id="FirstNameSp"></span></li>
+                    <li><b>Last name:</b> <span id="LastNameSp"></span></li>
+                    <li><b>Username:</b> <span id="UsernameSp"></span></li>
+                    <li><b>Language code:</b> <span id="LanguageCodeSp"></span></li>
+                </ul>
+                <hr/>
+                <ul>
+                    <li><b>Query ID:</b> <span id="QueryIdSp"></span></li>
+                    <li><b>Auth Date:</b> <span id="AuthDateSp"></span></li>
+                    <li><b>Hash:</b> <span id="HashSp" style="word-wrap: break-word;"></span></li>
+                </ul>
+                <hr/>
+                User and session data can only be retrieved when the web app is called via an inline button.
+                <hr/>
+                <textarea id="MessageTa" rows=5 style="width: 100%;"></textarea>
+                <button onclick="SendMessageToBot();">Send text to bot</button>
+                <!-- Данные о пользователе и сеансе можно получить только когда web app вызвана через inline-кнопку. -->
             </div>
-        </div>    
+        </div>
+        <div id="tabs-2">
+            <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+        </div>
     </div>
     <script type="application/javascript">
         const urlParams = new URLSearchParams(window.location.search);
