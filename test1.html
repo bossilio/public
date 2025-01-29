@@ -41,7 +41,7 @@
     </style>
 </head>
 <body class="" style="visibility: hidden;">
-    <div id="tabs-container">
+    <div id="tabs-container" style="height: 100%;">
         <div id="tabs">
             <ul>
                 <li><a href="#tabs-1">Info</a></li>
@@ -83,8 +83,6 @@
         const urlParams = new URLSearchParams(window.location.search);
         const chatId = urlParams.get("chat_id");
         const apiUrl = urlParams.get("api_url");
-        console.log("chat_id:", chatId);
-        console.log("API URL:", apiUrl);
         //--
         document.addEventListener('DOMContentLoaded', function () {
             $( "#tabs" ).tabs();
