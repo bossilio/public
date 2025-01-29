@@ -54,13 +54,27 @@
                 <hr/>
                 User and session data can only be retrieved when the web app is called via an inline button.
                 <hr/>
+                <h4 style="text-align: center;">Send text to bot:</h4>
                 <textarea id="MessageTa" rows=5 style="width: 100%;"></textarea>
                 <button onclick="SendMessageToBot();">Send text to bot</button>
                 <!-- Данные о пользователе и сеансе можно получить только когда web app вызвана через inline-кнопку. -->
             </div>
         </div>
         <div id="tabs-2" style="overflow: auto!important; height: calc(100vh - 70px); border-bottom: 1px solid grey;">
-            <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+            The web app can be called from the bot in several ways: via a command, menu, inline keyboard.<br/>
+            When launched for the first time, the bot will ask the user to confirm the launch. Only when launched via the inline keyboard will 
+            the bot transfer user and chat information to the web app. This example demonstrates a call via the inline keyboard.<br/>
+            Data from the web app can be transferred to the bot in two ways: 
+            <ul>
+                <li>by calling the Telegram.WebApp.sendData method via javascript. This method does not work for a web app launched via the inline keyboard. 
+                    After the data is transferred, the web app closes. This behavior makes using this method practically useless.
+                <li>by calling an external API, where you need to pass the chat_id, which will then call the Telegram API and pass the data to the bot.
+            </ul>
+            This example demonstrates the second approach.<br/>
+            After opening the web app, the bot will not be able to transfer data to it, this must be done with the help of additional 
+            modifications and in this example there are none.<br/>
+            Web app is a regular html page. It must be called via HTTPS. In this example, JQuery and JQuery UI are connected to the page, 
+            there are no restrictions on connecting additional frameworks and files.
         </div>
     </div>
     <script type="application/javascript">
